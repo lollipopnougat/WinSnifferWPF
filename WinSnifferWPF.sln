@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinSnifferWPF", "WinSnifferWPF\WinSnifferWPF.csproj", "{81DC072F-4934-4D31-BEF6-79AD7116CD00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81DC072F-4934-4D31-BEF6-79AD7116CD00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DC072F-4934-4D31-BEF6-79AD7116CD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DC072F-4934-4D31-BEF6-79AD7116CD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DC072F-4934-4D31-BEF6-79AD7116CD00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C3C2062-F36C-4C84-9AB8-5BD82717FA0B}
+	EndGlobalSection
+EndGlobal

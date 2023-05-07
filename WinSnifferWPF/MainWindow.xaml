@@ -1,0 +1,78 @@
+﻿<Window x:Class="WinSnifferWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:WinSnifferWPF"
+        mc:Ignorable="d"
+        Icon="pack://application:,,,/Icons/icon.ico"
+        x:Name="mainWindow"
+        MinHeight="450"
+        MinWidth="800"
+        Title="WinSnifferWPF" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36" x:Name="headerRow"/>
+            <RowDefinition/>
+            <RowDefinition Height="5" x:Name="splitterRow"/>
+            <RowDefinition/>
+            <RowDefinition Height="32" x:Name="statusRow"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions/>
+        <ToolBarPanel x:Name="toolBarPanel" Height="36" VerticalAlignment="Top" Grid.Row="0">
+            <ToolBar x:Name="toolBar" Height="{Binding ElementName=toolBarPanel,Path=Height}" >
+                <Button Height="32" Width="32" ToolTip="打开结果" Command="{Binding ImportCaptureBtnCommand}" IsEnabled="{Binding Stopped}">
+                    <Image Source="pack://application:,,,/Icons/import.png"></Image>
+                </Button>
+                <Button Height="32" Width="32" ToolTip="保存结果" Command="{Binding SaveCaptureBtnCommand}" IsEnabled="{Binding Stopped}">
+                    <Image Source="pack://application:,,,/Icons/save.png"></Image>
+                </Button>
+                <Button Height="32" Width="32" ToolTip="开始捕获" Command="{Binding StartCaptureBtnCommand}" IsEnabled="{Binding Stopped}">
+                    <Image Source="pack://application:,,,/Icons/start.png"></Image>
+                </Button>
+                <Button Height="32" Width="32" ToolTip="停止捕获" Command="{Binding StopCaptureBtnCommand}" IsEnabled="{Binding Started}">
+                    <Image Source="pack://application:,,,/Icons/stop.png"></Image>
+                </Button>
+                <Button Height="32" Width="32" ToolTip="清除结果" Command="{Binding ClearCaptureBtnCommand}">
+                    <Image Source="pack://application:,,,/Icons/clear.png"></Image>
+                </Button>
+                <ComboBox Height="24" Width="200" ItemsSource="{Binding DeviceList}" SelectedItem="{Binding SelectedDevice}" IsEnabled="{Binding Stopped}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding AdapterComboBoxSelectionChangedCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+                <TextBox Height="24" Width="240" Text="{Binding FilterText,UpdateSourceTrigger=LostFocus}" FontSize="14" Margin="10,0,0,0" />
+                <Button Height="32" Width="32" ToolTip="筛选结果" Command="{Binding FilterCaptureBtnCommand}">
+                    <Image Source="pack://application:,,,/Icons/filter.png"></Image>
+                </Button>
+                <Button Height="32" Width="32" ToolTip="关于" Command="{Binding InfoBtnCommand}" Margin="10,0,0,0">
+                    <Image Source="pack://application:,,,/Icons/info.png"></Image>
+                </Button>
+            </ToolBar>
+        </ToolBarPanel>
+        <ListView Grid.Row="1" x:Name="PacketListView" ItemsSource="{Binding PacketListView}" SelectedItem="{Binding SelectedPacketItem}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="50" Header="编号" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Width="100" Header="时间" DisplayMemberBinding="{Binding Time}" />
+                    <GridViewColumn Width="120" Header="源地址" DisplayMemberBinding="{Binding Source}"/>
+                    <GridViewColumn Width="120" Header="目标地址" DisplayMemberBinding="{Binding Destination}"/>
+                    <GridViewColumn Width="60" Header="协议" DisplayMemberBinding="{Binding Protocol}"/>
+                    <GridViewColumn Width="60" Header="长度" DisplayMemberBinding="{Binding Length}"/>
+                    <GridViewColumn Width="200" Header="信息" DisplayMemberBinding="{Binding Info}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFEEF5FD"/>
+        <TextBox Grid.Row="3" IsReadOnly="True" Text="{Binding PacketData}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+
+
+        <StatusBar Height="32" VerticalAlignment="Bottom" Background="#FFEEF5FD" Grid.Row="4">
+            <TextBlock Text="{Binding StatusText}" Margin="10,0,0,0" FontSize="14px"></TextBlock>
+        </StatusBar>
+
+    </Grid>
+</Window>
